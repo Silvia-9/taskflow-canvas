@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://silvia-9.github.io/taskflow-canvas/sitemap.xml
+
+# Optional: Crawl delay (in seconds)
+Crawl-delay: 1
