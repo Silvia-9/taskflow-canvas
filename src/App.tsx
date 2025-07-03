@@ -173,12 +173,30 @@ const App = () => {
     const handleAddProjectSchedule = (newSchedule: Omit<ProjectSchedule, 'id'>) => {
         setProjectScheduleData(prev => [...prev, { ...newSchedule, id: Date.now() }]);
         setMessage('A New Project Schedule has been added successfully!');
+        
+        // Track user engagement
+        if (typeof window !== 'undefined' && window.gtag) {
+            window.gtag('event', 'item_created', {
+                event_category: 'User Engagement',
+                event_label: 'Gantt Chart',
+                custom_parameter_1: 'content_creation'
+            });
+        }
     };
 
     // Function to handle adding new Task
     const handleAddTask = (newTask: Omit<TaskCard, 'id'>) => {
         setTaskBoardData(prev => [...prev, { ...newTask, id: Date.now() }]);
         setMessage('A New Task has been added successfully!');
+        
+        // Track user engagement
+        if (typeof window !== 'undefined' && window.gtag) {
+            window.gtag('event', 'item_created', {
+                event_category: 'User Engagement',
+                event_label: 'Kanban Board',
+                custom_parameter_1: 'content_creation'
+            });
+        }
     };
 
     // Function to handle updating task status
@@ -193,12 +211,30 @@ const App = () => {
     const handleAddBudget = (newBudget: Omit<ProjectBudget, 'id'>) => {
         setBudgetData(prev => [...prev, { ...newBudget, id: Date.now() }]);
         setMessage('Budget added successfully!');
+        
+        // Track user engagement
+        if (typeof window !== 'undefined' && window.gtag) {
+            window.gtag('event', 'item_created', {
+                event_category: 'User Engagement',
+                event_label: 'Budget Calculator',
+                custom_parameter_1: 'content_creation'
+            });
+        }
     };
 
     // Function to handle adding new Risk Register
     const handleAddRiskRegister = (newRiskRegister: Omit<RiskRegister, 'id'>) => {
         setRiskRegisterData(prev => [...prev, { ...newRiskRegister, id: Date.now() }]);
         setMessage('Risk register added successfully!');
+        
+        // Track user engagement
+        if (typeof window !== 'undefined' && window.gtag) {
+            window.gtag('event', 'item_created', {
+                event_category: 'User Engagement',
+                event_label: 'Risk Log',
+                custom_parameter_1: 'content_creation'
+            });
+        }
     };
 
     // Delete handler functions
@@ -703,6 +739,16 @@ const App = () => {
         try {
             setMessage('Generating Excel file...');
             
+            // Track Excel download attempt
+            if (typeof window !== 'undefined' && window.gtag) {
+                window.gtag('event', 'file_download', {
+                    event_category: 'Downloads',
+                    event_label: `Excel - ${filename}`,
+                    file_extension: 'xlsx',
+                    custom_parameter_1: 'excel_generation'
+                });
+            }
+            
             // Generate current date for filename
             const currentDate = new Date().toISOString().split('T')[0]; // Format: YYYY-MM-DD
             const filenameWithDate = `${filename}_${currentDate}`;
@@ -711,6 +757,15 @@ const App = () => {
             
             if (data.length === 0) {
                 setMessage('No data available for Excel export.');
+                
+                // Track Excel generation failure
+                if (typeof window !== 'undefined' && window.gtag) {
+                    window.gtag('event', 'download_error', {
+                        event_category: 'Errors',
+                        event_label: `Excel Error - ${filename} (No Data)`,
+                        custom_parameter_1: 'excel_no_data'
+                    });
+                }
                 return;
             }
 
@@ -844,9 +899,27 @@ const App = () => {
             // Save the file
             XLSX.writeFile(workbook, `${filenameWithDate}.xlsx`);
             setMessage(`${filenameWithDate}.xlsx downloaded successfully!`);
+            
+            // Track successful Excel generation
+            if (typeof window !== 'undefined' && window.gtag) {
+                window.gtag('event', 'download_complete', {
+                    event_category: 'Downloads',
+                    event_label: `Excel Success - ${filename}`,
+                    custom_parameter_1: 'excel_success'
+                });
+            }
         } catch (error) {
             console.error('Error generating Excel:', error);
             setMessage(`Failed to generate Excel: ${error instanceof Error ? error.message : 'Unknown error'}`);
+            
+            // Track Excel generation failure
+            if (typeof window !== 'undefined' && window.gtag) {
+                window.gtag('event', 'download_error', {
+                    event_category: 'Errors',
+                    event_label: `Excel Error - ${filename}`,
+                    custom_parameter_1: 'excel_error'
+                });
+            }
         }
     };
 
@@ -946,6 +1019,17 @@ const App = () => {
 
         // Encode the subject and body for the mailto link
         const mailtoLink = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+        
+        // Track email sending attempt
+        if (typeof window !== 'undefined' && window.gtag) {
+            window.gtag('event', 'email_share', {
+                event_category: 'Sharing',
+                event_label: `Email - ${filename}`,
+                method: 'email',
+                custom_parameter_1: 'email_client_opened'
+            });
+        }
+        
         window.open(mailtoLink, '_blank'); // Open in a new tab
         setMessage(`📧 Email client opened with ${subject}. Review and send when ready!`);
     };
