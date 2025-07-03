@@ -9,6 +9,7 @@ declare global {
     interface Window {
         html2canvas: any;
         jsPDF: any;
+        gtag?: (...args: any[]) => void;
     }
 }
 
@@ -98,6 +99,31 @@ interface RiskRegister {
 const App = () => {
     // State to manage the currently active tab
     const [activeTab, setActiveTab] = useState('mom');
+    
+    // Function to track section views in Google Analytics
+    const trackSectionView = (sectionName: string) => {
+        // Track page view for specific section
+        if (typeof window !== 'undefined' && window.gtag) {
+            window.gtag('event', 'page_view', {
+                page_title: `TaskFlow Canvas - ${sectionName}`,
+                page_location: `${window.location.origin}${window.location.pathname}#${sectionName.toLowerCase().replace(' ', '-')}`,
+                custom_parameter_1: sectionName
+            });
+            
+            // Track custom event for section engagement
+            window.gtag('event', 'section_view', {
+                event_category: 'Navigation',
+                event_label: sectionName,
+                custom_parameter_1: 'tab_navigation'
+            });
+        }
+    };
+    
+    // Enhanced function to handle tab changes with analytics
+    const handleTabChange = (tabName: string, sectionLabel: string) => {
+        setActiveTab(tabName);
+        trackSectionView(sectionLabel);
+    };
     // State to store Minutes of Meeting data
     const [momData, setMomData] = useState<MeetingMinute[]>([]);
     // State to store Timeline data
@@ -132,6 +158,15 @@ const App = () => {
     const handleAddMom = (newMom: Omit<MeetingMinute, 'id'>) => {
         setMomData(prev => [...prev, { ...newMom, id: Date.now() }]);
         setMessage('A New Meeting Note has been added successfully!');
+        
+        // Track user engagement
+        if (typeof window !== 'undefined' && window.gtag) {
+            window.gtag('event', 'item_created', {
+                event_category: 'User Engagement',
+                event_label: 'Meeting Notes',
+                custom_parameter_1: 'content_creation'
+            });
+        }
     };
 
     // Function to handle adding new Timeline
@@ -196,12 +231,40 @@ const App = () => {
     const downloadPdf = async (contentRef: React.RefObject<HTMLDivElement>, filename: string) => {
         setMessage('Generating PDF...');
         
+        // Track PDF download attempt
+        if (typeof window !== 'undefined' && window.gtag) {
+            window.gtag('event', 'file_download', {
+                event_category: 'Downloads',
+                event_label: `PDF - ${filename}`,
+                file_extension: 'pdf',
+                custom_parameter_1: 'pdf_generation'
+            });
+        }
+        
         try {
             // Use unified text-based PDF generation for all sections
             await generateTextBasedPDF(filename, contentRef);
+            
+            // Track successful PDF generation
+            if (typeof window !== 'undefined' && window.gtag) {
+                window.gtag('event', 'download_complete', {
+                    event_category: 'Downloads',
+                    event_label: `PDF Success - ${filename}`,
+                    custom_parameter_1: 'pdf_success'
+                });
+            }
         } catch (error) {
             console.error('Error generating PDF:', error);
             setMessage(`❌ Failed to generate PDF: ${error instanceof Error ? error.message : 'Unknown error'}`);
+            
+            // Track PDF generation failure
+            if (typeof window !== 'undefined' && window.gtag) {
+                window.gtag('event', 'download_error', {
+                    event_category: 'Errors',
+                    event_label: `PDF Error - ${filename}`,
+                    custom_parameter_1: 'pdf_error'
+                });
+            }
         }
     };
 
@@ -934,7 +997,7 @@ const App = () => {
             {/* Tab Navigation */}
             <nav className="mb-8 flex justify-center space-x-2 flex-wrap">
                 <button
-                    onClick={() => setActiveTab('mom')}
+                    onClick={() => handleTabChange('mom', 'Meeting Notes')}
                     className={`px-4 py-2 rounded-xl font-semibold text-sm md:text-lg transition-all duration-300 ease-in-out shadow-md
                         ${activeTab === 'mom' ? 'bg-blue-600 text-white transform scale-105 shadow-lg' : 'bg-white text-blue-700 hover:bg-blue-50 hover:text-blue-800'}`
                     }
@@ -942,7 +1005,7 @@ const App = () => {
                     Meeting Notes
                 </button>
                 <button
-                    onClick={() => setActiveTab('project')}
+                    onClick={() => handleTabChange('project', 'Gantt Chart')}
                     className={`px-4 py-2 rounded-xl font-semibold text-sm md:text-lg transition-all duration-300 ease-in-out shadow-md
                         ${activeTab === 'project' ? 'bg-blue-600 text-white transform scale-105 shadow-lg' : 'bg-white text-blue-700 hover:bg-blue-50 hover:text-blue-800'}`
                     }
@@ -950,7 +1013,7 @@ const App = () => {
                     Gantt Chart
                 </button>
                 <button
-                    onClick={() => setActiveTab('taskboard')}
+                    onClick={() => handleTabChange('taskboard', 'Kanban Board')}
                     className={`px-4 py-2 rounded-xl font-semibold text-sm md:text-lg transition-all duration-300 ease-in-out shadow-md
                         ${activeTab === 'taskboard' ? 'bg-blue-600 text-white transform scale-105 shadow-lg' : 'bg-white text-blue-700 hover:bg-blue-50 hover:text-blue-800'}`
                     }
@@ -958,7 +1021,7 @@ const App = () => {
                     Kanban Board
                 </button>
                 <button
-                    onClick={() => setActiveTab('budget')}
+                    onClick={() => handleTabChange('budget', 'Budget Calculator')}
                     className={`px-4 py-2 rounded-xl font-semibold text-sm md:text-lg transition-all duration-300 ease-in-out shadow-md
                         ${activeTab === 'budget' ? 'bg-blue-600 text-white transform scale-105 shadow-lg' : 'bg-white text-blue-700 hover:bg-blue-50 hover:text-blue-800'}`
                     }
@@ -966,7 +1029,7 @@ const App = () => {
                     Budget Calculator
                 </button>
                 <button
-                    onClick={() => setActiveTab('risks')}
+                    onClick={() => handleTabChange('risks', 'Risk Log')}
                     className={`px-4 py-2 rounded-xl font-semibold text-sm md:text-lg transition-all duration-300 ease-in-out shadow-md
                         ${activeTab === 'risks' ? 'bg-blue-600 text-white transform scale-105 shadow-lg' : 'bg-white text-blue-700 hover:bg-blue-50 hover:text-blue-800'}`
                     }
