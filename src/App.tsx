@@ -1072,7 +1072,7 @@ const App = () => {
                             (e.target as HTMLImageElement).style.display = 'none';
                         }}
                     />
-                    <h1 className="text-4xl sm:text-5xl font-extrabold text-blue-800 drop-shadow-lg">
+                    <h1 className="text-4xl sm:text-5xl font-extrabold text-purple-800 drop-shadow-lg">
                         TaskFlow Canvas
                     </h1>
                 </div>
@@ -1093,7 +1093,7 @@ const App = () => {
                 <button
                     onClick={() => handleTabChange('mom', 'Meeting Notes')}
                     className={`px-4 py-2 rounded-xl font-semibold text-sm md:text-lg transition-all duration-300 ease-in-out shadow-md
-                        ${activeTab === 'mom' ? 'bg-blue-600 text-white transform scale-105 shadow-lg' : 'bg-white text-blue-700 hover:bg-blue-50 hover:text-blue-800'}`
+                        ${activeTab === 'mom' ? 'bg-purple-600 text-white transform scale-105 shadow-lg' : 'bg-white text-purple-700 hover:bg-purple-50 hover:text-purple-800'}`
                     }
                 >
                     Meeting Notes
@@ -1101,7 +1101,7 @@ const App = () => {
                 <button
                     onClick={() => handleTabChange('project', 'Gantt Chart')}
                     className={`px-4 py-2 rounded-xl font-semibold text-sm md:text-lg transition-all duration-300 ease-in-out shadow-md
-                        ${activeTab === 'project' ? 'bg-blue-600 text-white transform scale-105 shadow-lg' : 'bg-white text-blue-700 hover:bg-blue-50 hover:text-blue-800'}`
+                        ${activeTab === 'project' ? 'bg-purple-600 text-white transform scale-105 shadow-lg' : 'bg-white text-purple-700 hover:bg-purple-50 hover:text-purple-800'}`
                     }
                 >
                     Gantt Chart
@@ -1109,7 +1109,7 @@ const App = () => {
                 <button
                     onClick={() => handleTabChange('taskboard', 'Kanban Board')}
                     className={`px-4 py-2 rounded-xl font-semibold text-sm md:text-lg transition-all duration-300 ease-in-out shadow-md
-                        ${activeTab === 'taskboard' ? 'bg-blue-600 text-white transform scale-105 shadow-lg' : 'bg-white text-blue-700 hover:bg-blue-50 hover:text-blue-800'}`
+                        ${activeTab === 'taskboard' ? 'bg-purple-600 text-white transform scale-105 shadow-lg' : 'bg-white text-purple-700 hover:bg-purple-50 hover:text-purple-800'}`
                     }
                 >
                     Kanban Board
@@ -1117,7 +1117,7 @@ const App = () => {
                 <button
                     onClick={() => handleTabChange('budget', 'Budget Calculator')}
                     className={`px-4 py-2 rounded-xl font-semibold text-sm md:text-lg transition-all duration-300 ease-in-out shadow-md
-                        ${activeTab === 'budget' ? 'bg-blue-600 text-white transform scale-105 shadow-lg' : 'bg-white text-blue-700 hover:bg-blue-50 hover:text-blue-800'}`
+                        ${activeTab === 'budget' ? 'bg-purple-600 text-white transform scale-105 shadow-lg' : 'bg-white text-purple-700 hover:bg-purple-50 hover:text-purple-800'}`
                     }
                 >
                     Budget Calculator
@@ -1125,7 +1125,7 @@ const App = () => {
                 <button
                     onClick={() => handleTabChange('risks', 'Risk Log')}
                     className={`px-4 py-2 rounded-xl font-semibold text-sm md:text-lg transition-all duration-300 ease-in-out shadow-md
-                        ${activeTab === 'risks' ? 'bg-blue-600 text-white transform scale-105 shadow-lg' : 'bg-white text-blue-700 hover:bg-blue-50 hover:text-blue-800'}`
+                        ${activeTab === 'risks' ? 'bg-purple-600 text-white transform scale-105 shadow-lg' : 'bg-white text-purple-700 hover:bg-purple-50 hover:text-purple-800'}`
                     }
                 >
                     Risk Log
@@ -1232,7 +1232,7 @@ const App = () => {
                         href="https://silvia-9.github.io/taskflow-canvas/" 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="text-blue-600 hover:text-blue-800 hover:underline font-semibold transition-all duration-200"
+                        className="text-purple-600 hover:text-purple-800 hover:underline font-semibold transition-all duration-200"
                     >
                         TaskFlow Canvas
                     </a>
