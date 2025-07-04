@@ -1034,13 +1034,13 @@ const App = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-emerald-100 via-teal-50 to-cyan-100 font-inter text-gray-800 p-4 sm:p-6 lg:p-8 rounded-lg shadow-xl">
+        <div className="min-h-screen bg-gradient-to-br from-indigo-100 via-purple-50 to-pink-100 font-inter text-gray-800 p-4 sm:p-6 lg:p-8 rounded-lg shadow-xl">
             <style>
                 {`
                 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
                 body {
                     font-family: 'Inter', sans-serif;
-                    background: linear-gradient(135deg, #a7f3d0 0%, #67e8f9 100%);
+                    background: linear-gradient(135deg, #e0e7ff 0%, #f3e8ff 50%, #fce7f3 100%);
                 }
                 .scrollable-content {
                     max-height: 500px; /* Adjust as needed */
