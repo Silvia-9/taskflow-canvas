@@ -1076,8 +1076,8 @@ const App = () => {
                         rgba(15, 23, 42, 0.95) 0%,
                         rgba(30, 27, 75, 0.9) 20%,
                         rgba(91, 33, 182, 0.8) 40%,
-                        rgba(79, 70, 229, 0.85) 60%,
-                        rgba(59, 130, 246, 0.8) 80%,
+                        rgba(73, 64, 235, 0.85) 60%,
+                        rgba(30, 174, 231, 0.8) 80%,
                         rgba(15, 23, 42, 0.95) 100%);
                     border: 2px solid transparent;
                     background-clip: padding-box;
