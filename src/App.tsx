@@ -1014,7 +1014,7 @@ const App = () => {
         }
 
         // Add footer with generation info
-        emailBody += `\n\n📧 Generated from TaskFlow Canvas on ${new Date().toLocaleDateString()}\n`;
+        emailBody += `\n\n📧 Generated from TaskFlow Canvas (https://silvia-9.github.io/taskflow-canvas/) on ${new Date().toLocaleDateString()}\n`;
 
         // Encode the subject and body for the mailto link
         const mailtoLink = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
