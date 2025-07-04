@@ -1014,7 +1014,7 @@ const App = () => {
         }
 
         // Add footer with generation info
-        emailBody += `\n\n© 2025 Silvia Wu. All rights reserved.\n`;
+        emailBody += `\n\n📧 Generated from TaskFlow Canvas\n🌐 Visit at: https://silvia-9.github.io/taskflow-canvas/\n📅 Generated on ${new Date().toLocaleDateString()}\n`;
 
         // Encode the subject and body for the mailto link
         const mailtoLink = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
@@ -1034,13 +1034,13 @@ const App = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-pink-100 via-purple-50 to-indigo-100 font-inter text-gray-800 p-4 sm:p-6 lg:p-8 rounded-lg shadow-xl">
+        <div className="min-h-screen bg-gradient-to-br from-emerald-100 via-teal-50 to-cyan-100 font-inter text-gray-800 p-4 sm:p-6 lg:p-8 rounded-lg shadow-xl">
             <style>
                 {`
                 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
                 body {
                     font-family: 'Inter', sans-serif;
-                    background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+                    background: linear-gradient(135deg, #a7f3d0 0%, #67e8f9 100%);
                 }
                 .scrollable-content {
                     max-height: 500px; /* Adjust as needed */
@@ -1187,7 +1187,7 @@ const App = () => {
                     projectScheduleContentRef={projectScheduleContentRef}
                     downloadPdf={() => {
                         if (projectScheduleData.length === 0) {
-                            setMessage('❌ No schedule data to export. Please add some project schedules first.');
+                            setMessage('❌ No schedule data to export. Please add some project timelines first.');
                             return;
                         }
                         downloadPdf(projectScheduleContentRef, 'ProjectTimeline');
@@ -1282,6 +1282,15 @@ const MinutesOfMeeting: React.FC<MinutesOfMeetingProps> = ({ onAddMom, onDeleteM
     const [agenda, setAgenda] = useState('');
     const [discussion, setDiscussion] = useState('');
     const [actionItems, setActionItems] = useState<ActionItem[]>([]);
+    
+    // Function to format time in AM/PM format
+    const formatTimeAMPM = (time24: string) => {
+        if (!time24) return '';
+        const [hours, minutes] = time24.split(':');
+        const hour12 = ((parseInt(hours) + 11) % 12) + 1;
+        const ampm = parseInt(hours) >= 12 ? 'PM' : 'AM';
+        return `${hour12}:${minutes} ${ampm}`;
+    };
     
     // Action item form states
     const [newActionTask, setNewActionTask] = useState('');
@@ -1439,9 +1448,9 @@ const MinutesOfMeeting: React.FC<MinutesOfMeetingProps> = ({ onAddMom, onDeleteM
                 </div>
             </form>
 
-            <h2 className="text-2xl font-bold text-blue-700 mb-4 text-center">Recorded Meeting Notes</h2>
+            <h2 className="text-2xl font-bold text-blue-700 mb-4 text-center">Meeting Notes</h2>
             {momData.length === 0 ? (
-                <p className="text-center text-gray-600 p-4 border rounded-lg bg-gray-50">No meeting notes are recorded yet. Add some above!</p>
+                <p className="text-center text-gray-600 p-4 border rounded-lg bg-gray-50">No meeting notes are added yet. Add some above!</p>
             ) : (
                 <div ref={momContentRef} data-pdf-content className="bg-gray-50 p-6 rounded-xl shadow-inner border border-gray-200 scrollable-content mb-6">
                     {momData.map((mom, index) => (
@@ -1459,7 +1468,7 @@ const MinutesOfMeeting: React.FC<MinutesOfMeetingProps> = ({ onAddMom, onDeleteM
                                     Delete
                                 </button>
                             </div>
-                            <p className="text-gray-700 mb-1"><strong>Date:</strong> {mom.date} at {mom.time}</p>
+                            <p className="text-gray-700 mb-1"><strong>Date:</strong> {mom.date} at {formatTimeAMPM(mom.time)}</p>
                             {mom.attendees && <p className="text-gray-700 mb-1"><strong>Attendees:</strong> {mom.attendees}</p>}
                             {mom.agenda && <p className="text-gray-700 mb-1"><strong>Agenda:</strong> {mom.agenda}</p>}
                             {mom.actionItems && <p className="text-gray-700 mb-1"><strong>Discussion:</strong> {mom.discussion}</p>}
@@ -1750,7 +1759,7 @@ const ProjectScheduleComponent: React.FC<ProjectScheduleProps> = ({ onAddProject
                 </div>
 
                 <div className="mt-4">
-                    <h3 className="text-xl font-semibold text-gray-700 mb-4 border-b pb-2">Project Tasks & Timeline</h3>
+                    <h3 className="text-xl font-semibold text-gray-700 mb-4 border-b pb-2">Project timeline</h3>
                     {tasks.map((task, index) => (
                         <div key={task.id} className="mb-4 p-4 border border-gray-200 rounded-lg bg-gray-50 shadow-sm">
                             {/* First row: Description and Assigned To */}
@@ -1824,9 +1833,9 @@ const ProjectScheduleComponent: React.FC<ProjectScheduleProps> = ({ onAddProject
                 </div>
             </form>
 
-            <h2 className="text-2xl font-bold text-blue-700 mb-4 text-center">Project Schedules</h2>
+            <h2 className="text-2xl font-bold text-blue-700 mb-4 text-center">Project Schedule</h2>
             {projectScheduleData.length === 0 ? (
-                <p className="text-center text-gray-600 p-4 border rounded-lg bg-gray-50">No project schedules created yet. Add some above!</p>
+                <p className="text-center text-gray-600 p-4 border rounded-lg bg-gray-50">No project timelines are added yet. Add some above!</p>
             ) : (
                 <>
                     <div ref={projectScheduleContentRef} data-pdf-content className="bg-gray-50 p-6 rounded-xl shadow-inner border border-gray-200 scrollable-content mb-6">
@@ -1913,19 +1922,19 @@ const ProjectScheduleComponent: React.FC<ProjectScheduleProps> = ({ onAddProject
             {projectScheduleData.length === 0 && (
                 <div className="flex flex-col sm:flex-row justify-center gap-4 mt-6">
                     <ActionButton
-                        onClick={() => alert('Please add project schedules first')}
+                        onClick={() => alert('Please add project timelines first')}
                         label="Download PDF"
                         icon="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
                         color="orange"
                     />
                     <ActionButton
-                        onClick={() => alert('Please add project schedules first')}
+                        onClick={() => alert('Please add project timelines first')}
                         label="Download Excel"
                         icon="M13 14l-4-4m0 0l-4 4m4-4v12"
                         color="blue"
                     />
                     <ActionButton
-                        onClick={() => alert('Please add project schedules first')}
+                        onClick={() => alert('Please add project timelines first')}
                         label="Send Email"
                         icon="M3 8l4 4 4-4m0 6l-4 4-4-4"
                         color="pink"
@@ -2371,7 +2380,7 @@ const BudgetCalculatorComponent: React.FC<BudgetCalculatorProps> = ({ onAddBudge
 
             <h2 className="text-2xl font-bold text-blue-700 mb-4 text-center">Budget Overview</h2>
             {budgetData.length === 0 ? (
-                <p className="text-center text-gray-600 p-4 border rounded-lg bg-gray-50">No budgets recorded yet. Add some above!</p>
+                <p className="text-center text-gray-600 p-4 border rounded-lg bg-gray-50">No budgets are added yet. Add some above!</p>
             ) : (
                 <div ref={budgetContentRef} data-pdf-content className="space-y-6 scrollable-content">
                     {budgetData.map((budget, index) => (
@@ -2644,7 +2653,7 @@ const RiskRegisterComponent: React.FC<RiskRegisterProps> = ({ onAddRiskRegister,
 
             <h2 className="text-2xl font-bold text-blue-700 mb-4 text-center">Risk Register</h2>
             {riskRegisterData.length === 0 ? (
-                <p className="text-center text-gray-600 p-4 border rounded-lg bg-gray-50">No risk register recorded yet. Add some above!</p>
+                <p className="text-center text-gray-600 p-4 border rounded-lg bg-gray-50">No risk registers are added yet. Add some above!</p>
             ) : (
                 <div ref={riskRegisterContentRef} data-pdf-content className="space-y-6 scrollable-content">
                     {riskRegisterData.map((register, index) => (
