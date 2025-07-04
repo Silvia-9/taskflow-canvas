@@ -1065,16 +1065,11 @@ const App = () => {
                     background-clip: text;
                 }
                 .northern-lights-text {
-                    background: linear-gradient(135deg, #00ff88 0%, #00d4ff 25%, #b347d9 50%, #ff6b9d 75%, #00ff88 100%);
-                    -webkit-background-clip: text;
-                    -webkit-text-fill-color: transparent;
-                    background-clip: text;
-                    background-size: 200% 200%;
-                    animation: aurora 3s ease-in-out infinite;
-                }
-                @keyframes aurora {
-                    0%, 100% { background-position: 0% 50%; }
-                    50% { background-position: 100% 50%; }
+                    color: #ffffff;
+                    text-shadow: 
+                        0 0 20px rgba(99, 102, 241, 0.6),
+                        0 0 40px rgba(147, 51, 234, 0.4),
+                        0 4px 8px rgba(0, 0, 0, 0.3);
                 }
                 .header-container {
                     background: linear-gradient(135deg, 
