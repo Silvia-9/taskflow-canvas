@@ -353,7 +353,7 @@ const App = () => {
             pdf.setTextColor(40, 116, 166);
             if (filename.includes('Timeline')) {
                 pdf.text('PROJECT SCHEDULE REPORT', pageWidth / 2, yPosition, { align: 'center' });
-            } else if (filename.includes('MeetingMinutes')) {
+            } else if (filename.includes('MeetingNotes')) {
                 pdf.text('MEETING REPORT', pageWidth / 2, yPosition, { align: 'center' });
             } else if (filename.includes('TaskBoard')) {
                 pdf.text('KANBAN BOARD REPORT', pageWidth / 2, yPosition, { align: 'center' });
@@ -413,7 +413,7 @@ const App = () => {
                     
                     yPosition += 10;
                 });
-            } else if (filename.includes('MeetingMinutes') && momData.length > 0) {
+            } else if (filename.includes('MeetingNotes') && momData.length > 0) {
                 momData.forEach((mom, index) => {
                     if (yPosition > pageHeight - 50) {
                         pdf.addPage();
@@ -770,7 +770,7 @@ const App = () => {
             }
 
             // Format data based on type
-            if (filename.includes('MeetingMinutes')) {
+            if (filename.includes('MeetingNotes')) {
                 const momData = data as MeetingMinute[];
                 worksheetData = momData.map(mom => ({
                     'Meeting Title': mom.title,
@@ -976,7 +976,7 @@ const App = () => {
             } else {
                 // Default handling for other content types
                 content.forEach((item, index) => {
-                    emailBody += filename.includes('MeetingMinutes') ? `Meeting no. ${index + 1}:\n` : `ENTRY ${index + 1}:\n`;
+                    emailBody += filename.includes('MeetingNotes') ? `Meeting no. ${index + 1}:\n` : `ENTRY ${index + 1}:\n`;
                     emailBody += `${'-'.repeat(20)}\n`;
                     
                     for (const key in item) {
@@ -1144,10 +1144,10 @@ const App = () => {
                             setMessage('❌ No meeting notes to export. Please add some meeting notes first.');
                             return;
                         }
-                        downloadPdf(momContentRef, 'MeetingMinutes');
+                        downloadPdf(momContentRef, 'MeetingNotes');
                     }}
-                    downloadExcel={() => downloadExcel(momData, 'MeetingMinutes', 'Meeting Minutes')}
-                    sendEmail={() => sendEmail(momData, 'Meeting Notes', 'MeetingMinutes')}
+                    downloadExcel={() => downloadExcel(momData, 'MeetingMinutes', 'Meeting Notes')}
+                    sendEmail={() => sendEmail(momData, 'Meeting Notes', 'MeetingNotes')}
                 />
             )}
 
@@ -1490,7 +1490,7 @@ const MinutesOfMeeting: React.FC<MinutesOfMeetingProps> = ({ onAddMom, onDeleteM
                     color="blue"
                 />
                 <ActionButton
-                    onClick={momData.length > 0 ? () => sendEmail(momData, 'Meeting Notes', 'MeetingMinutes') : () => alert('Please add meeting notes first')}
+                    onClick={momData.length > 0 ? () => sendEmail(momData, 'Meeting Notes', 'MeetingNotes') : () => alert('Please add meeting notes first')}
                     label="Send Email"
                     icon="M3 8l4 4 4-4m0 6l-4 4-4-4"
                     color="orange"
