@@ -976,7 +976,7 @@ const App = () => {
             } else {
                 // Default handling for other content types
                 content.forEach((item, index) => {
-                    emailBody += `ENTRY ${index + 1}:\n`;
+                    emailBody += filename.includes('MeetingMinutes') ? `Meeting no. ${index + 1}:\n` : `ENTRY ${index + 1}:\n`;
                     emailBody += `${'-'.repeat(20)}\n`;
                     
                     for (const key in item) {
