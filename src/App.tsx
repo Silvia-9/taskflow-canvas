@@ -210,8 +210,8 @@ const App = () => {
     // Function to handle adding new Budget
     const handleAddBudget = (newBudget: Omit<ProjectBudget, 'id'>) => {
         setBudgetData(prev => [...prev, { ...newBudget, id: Date.now() }]);
-        setMessage('Budget added successfully!');
-        
+        setMessage('A New Budget has been added successfully!');
+
         // Track user engagement
         if (typeof window !== 'undefined' && window.gtag) {
             window.gtag('event', 'item_created', {
