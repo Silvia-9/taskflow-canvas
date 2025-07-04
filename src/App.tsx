@@ -1034,12 +1034,13 @@ const App = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 font-inter text-gray-800 p-4 sm:p-6 lg:p-8 rounded-lg shadow-xl">
+        <div className="min-h-screen bg-gradient-to-br from-pink-100 via-purple-50 to-indigo-100 font-inter text-gray-800 p-4 sm:p-6 lg:p-8 rounded-lg shadow-xl">
             <style>
                 {`
                 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
                 body {
                     font-family: 'Inter', sans-serif;
+                    background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
                 }
                 .scrollable-content {
                     max-height: 500px; /* Adjust as needed */
@@ -1059,26 +1060,53 @@ const App = () => {
                     -ms-overflow-style: none;  /* IE and Edge */
                     scrollbar-width: none;  /* Firefox */
                 }
+                .header-gradient {
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                }
+                .header-container {
+                    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+                    border: 3px solid transparent;
+                    background-clip: padding-box;
+                    border-radius: 20px;
+                    position: relative;
+                }
+                .header-container::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    z-index: -1;
+                    margin: -3px;
+                    border-radius: 20px;
+                    background: linear-gradient(135deg, #667eea, #764ba2, #ff6b6b, #feca57);
+                }
                 `}
             </style>
             <header className="text-center mb-8">
-                <div className="flex items-center justify-center mb-2">
-                    <img 
-                        src="/taskflow-canvas/TaskFlow Canvas.png" 
-                        alt="TaskFlow Canvas Logo" 
-                        className="w-16 h-16 mr-4"
-                        onError={(e) => {
-                            // Hide the image if it fails to load
-                            (e.target as HTMLImageElement).style.display = 'none';
-                        }}
-                    />
-                    <h1 className="text-4xl sm:text-5xl font-extrabold text-purple-800 drop-shadow-lg">
-                        TaskFlow Canvas
-                    </h1>
+                <div className="header-container p-6 mb-4 shadow-2xl">
+                    <div className="flex items-center justify-center mb-3">
+                        <img 
+                            src="/taskflow-canvas/TaskFlow Canvas.png" 
+                            alt="TaskFlow Canvas Logo" 
+                            className="w-20 h-20 mr-4 drop-shadow-lg"
+                            onError={(e) => {
+                                // Hide the image if it fails to load
+                                (e.target as HTMLImageElement).style.display = 'none';
+                            }}
+                        />
+                        <h1 className="text-4xl sm:text-6xl font-extrabold header-gradient drop-shadow-2xl">
+                            TaskFlow Canvas
+                        </h1>
+                    </div>
+                    <p className="text-xl font-semibold text-gray-700 bg-white/30 backdrop-blur-sm rounded-full px-6 py-2 inline-block border border-white/20">
+                        Optimize Your Workflow Visually and Strategically
+                    </p>
                 </div>
-                <p className="text-lg text-gray-600">
-                    Optimize Your Workflow Visually and Strategically
-                </p>
             </header>
 
             {/* Message Display */}
@@ -1093,7 +1121,7 @@ const App = () => {
                 <button
                     onClick={() => handleTabChange('mom', 'Meeting Notes')}
                     className={`px-4 py-2 rounded-xl font-semibold text-sm md:text-lg transition-all duration-300 ease-in-out shadow-md
-                        ${activeTab === 'mom' ? 'bg-purple-600 text-white transform scale-105 shadow-lg' : 'bg-white text-purple-700 hover:bg-purple-50 hover:text-purple-800'}`
+                        ${activeTab === 'mom' ? 'bg-gradient-to-r from-pink-500 to-rose-500 text-white transform scale-105 shadow-lg' : 'bg-white text-pink-600 hover:bg-pink-50 hover:text-pink-700 border-2 border-pink-200'}`
                     }
                 >
                     Meeting Notes
@@ -1101,7 +1129,7 @@ const App = () => {
                 <button
                     onClick={() => handleTabChange('project', 'Gantt Chart')}
                     className={`px-4 py-2 rounded-xl font-semibold text-sm md:text-lg transition-all duration-300 ease-in-out shadow-md
-                        ${activeTab === 'project' ? 'bg-purple-600 text-white transform scale-105 shadow-lg' : 'bg-white text-purple-700 hover:bg-purple-50 hover:text-purple-800'}`
+                        ${activeTab === 'project' ? 'bg-gradient-to-r from-purple-500 to-indigo-500 text-white transform scale-105 shadow-lg' : 'bg-white text-purple-600 hover:bg-purple-50 hover:text-purple-700 border-2 border-purple-200'}`
                     }
                 >
                     Gantt Chart
@@ -1109,7 +1137,7 @@ const App = () => {
                 <button
                     onClick={() => handleTabChange('taskboard', 'Kanban Board')}
                     className={`px-4 py-2 rounded-xl font-semibold text-sm md:text-lg transition-all duration-300 ease-in-out shadow-md
-                        ${activeTab === 'taskboard' ? 'bg-purple-600 text-white transform scale-105 shadow-lg' : 'bg-white text-purple-700 hover:bg-purple-50 hover:text-purple-800'}`
+                        ${activeTab === 'taskboard' ? 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white transform scale-105 shadow-lg' : 'bg-white text-blue-600 hover:bg-blue-50 hover:text-blue-700 border-2 border-blue-200'}`
                     }
                 >
                     Kanban Board
@@ -1117,7 +1145,7 @@ const App = () => {
                 <button
                     onClick={() => handleTabChange('budget', 'Budget Calculator')}
                     className={`px-4 py-2 rounded-xl font-semibold text-sm md:text-lg transition-all duration-300 ease-in-out shadow-md
-                        ${activeTab === 'budget' ? 'bg-purple-600 text-white transform scale-105 shadow-lg' : 'bg-white text-purple-700 hover:bg-purple-50 hover:text-purple-800'}`
+                        ${activeTab === 'budget' ? 'bg-gradient-to-r from-green-500 to-emerald-500 text-white transform scale-105 shadow-lg' : 'bg-white text-green-600 hover:bg-green-50 hover:text-green-700 border-2 border-green-200'}`
                     }
                 >
                     Budget Calculator
@@ -1125,7 +1153,7 @@ const App = () => {
                 <button
                     onClick={() => handleTabChange('risks', 'Risk Log')}
                     className={`px-4 py-2 rounded-xl font-semibold text-sm md:text-lg transition-all duration-300 ease-in-out shadow-md
-                        ${activeTab === 'risks' ? 'bg-purple-600 text-white transform scale-105 shadow-lg' : 'bg-white text-purple-700 hover:bg-purple-50 hover:text-purple-800'}`
+                        ${activeTab === 'risks' ? 'bg-gradient-to-r from-orange-500 to-red-500 text-white transform scale-105 shadow-lg' : 'bg-white text-orange-600 hover:bg-orange-50 hover:text-orange-700 border-2 border-orange-200'}`
                     }
                 >
                     Risk Log
