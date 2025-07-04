@@ -1077,11 +1077,12 @@ const App = () => {
                     50% { background-position: 100% 50%; }
                 }
                 .header-container {
-                    background: linear-gradient(180deg, #212C33 0%, #2F3D44 100%);
+                    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(240, 248, 255, 0.95) 50%, rgba(245, 245, 255, 0.9) 100%);
                     border: 2px solid transparent;
                     background-clip: padding-box;
                     border-radius: 20px;
                     position: relative;
+                    backdrop-filter: blur(10px);
                 }
                 .header-container::before {
                     content: '';
