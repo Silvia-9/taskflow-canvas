@@ -64,7 +64,6 @@ interface TaskCard {
 interface BudgetItem {
     id: number;
     category: string;
-    description: string;
     estimatedCost: number;
     actualCost: number;
     earnedValue: number;
@@ -593,7 +592,7 @@ const App = () => {
                     
                     pdf.setFontSize(13);
                     pdf.setTextColor(40, 116, 166);
-                    yPosition = addWrappedText('DETAILED BUDGET ITEMS BREAKDOWN', margin, yPosition, pageWidth - 2 * margin, 13);
+                    yPosition = addWrappedText('DETAILED ITEMS BREAKDOWN', margin, yPosition, pageWidth - 2 * margin, 13);
                     yPosition += 3;
                     
                     // Add underline for section
@@ -615,7 +614,7 @@ const App = () => {
                         
                         pdf.setFontSize(10);
                         pdf.setTextColor(0, 0, 0);
-                        yPosition = addWrappedText(`   Description: ${item.description}`, margin + 10, yPosition, pageWidth - 2 * margin - 10);
+                        yPosition = addWrappedText(`   Category: ${item.category}`, margin + 10, yPosition, pageWidth - 2 * margin - 10);
                         
                         // Financial details in structured format
                         yPosition = addWrappedText(`   • Planned Value (PV): $${item.estimatedCost.toLocaleString()}`, margin + 10, yPosition, pageWidth - 2 * margin - 10);
@@ -844,7 +843,7 @@ const App = () => {
                             'Project Name': budget.projectName,
                             'Budget at Completion (BAC)': '',
                             'Category': item.category,
-                            'Description': item.description,
+                            'Category': item.category,
                             'Planned Value (PV)': item.estimatedCost,
                             'Earned Value (EV)': item.earnedValue,
                             'Actual Cost (AC)': item.actualCost,
@@ -2166,12 +2165,12 @@ const BudgetCalculatorComponent: React.FC<BudgetCalculatorProps> = ({ onAddBudge
     const [projectName, setProjectName] = useState('');
     const [totalBudget, setTotalBudget] = useState('');
     const [budgetItems, setBudgetItems] = useState<BudgetItem[]>([
-        { id: 1, category: '', description: '', estimatedCost: 0, actualCost: 0, earnedValue: 0, notes: '' }
+        { id: 1, category: '', estimatedCost: 0, actualCost: 0, earnedValue: 0, notes: '' }
     ]);
 
     const addBudgetItem = () => {
         setBudgetItems(prev => [...prev, { 
-            id: Date.now(), category: '', description: '', estimatedCost: 0, actualCost: 0, earnedValue: 0, notes: '' 
+            id: Date.now(), category: '', estimatedCost: 0, actualCost: 0, earnedValue: 0, notes: '' 
         }]);
     };
 
@@ -2193,14 +2192,13 @@ const BudgetCalculatorComponent: React.FC<BudgetCalculatorProps> = ({ onAddBudge
         // Validate required budget item fields
         const invalidItems = budgetItems.filter(item => 
             !item.category.trim() || 
-            !item.description.trim() ||
             item.estimatedCost < 0 ||
             item.actualCost < 0 ||
             item.earnedValue < 0
         );
         
         if (invalidItems.length > 0) {
-            alert('Please fill in all required fields (Category, Description, Planned Value, and Actual Cost) for all budget items. Values cannot be negative.');
+            alert('Please fill in all required fields (Category, Planned Value, and Actual Cost) for all budget items. Values cannot be negative.');
             return;
         }
         
@@ -2208,7 +2206,7 @@ const BudgetCalculatorComponent: React.FC<BudgetCalculatorProps> = ({ onAddBudge
             projectName, totalBudget: parseFloat(totalBudget), items: budgetItems
         });
         setProjectName(''); setTotalBudget('');
-        setBudgetItems([{ id: 1, category: '', description: '', estimatedCost: 0, actualCost: 0, earnedValue: 0, notes: '' }]);
+        setBudgetItems([{ id: 1, category: '', estimatedCost: 0, actualCost: 0, earnedValue: 0, notes: '' }]);
     };
 
     const getTotalEstimated = (budget: ProjectBudget) => budget.items.reduce((sum, item) => sum + item.estimatedCost, 0);
@@ -2250,9 +2248,9 @@ const BudgetCalculatorComponent: React.FC<BudgetCalculatorProps> = ({ onAddBudge
                     <InputField label="Budget at Completion (BAC)" type="number" value={totalBudget} onChange={setTotalBudget} placeholder="$0.00" required />
                 </div>
 
-                <h3 className="text-xl font-semibold text-gray-700 mb-4 border-b pb-2">Budget Items</h3>
+                <h3 className="text-xl font-semibold text-gray-700 mb-4 border-b pb-2">Items</h3>
                 {budgetItems.map((item, index) => (
-                    <div key={item.id} className="grid grid-cols-1 md:grid-cols-7 gap-4 mb-4 p-4 border border-gray-200 rounded-lg bg-gray-50 relative">
+                    <div key={item.id} className="grid grid-cols-1 md:grid-cols-6 gap-4 mb-4 p-4 border border-gray-200 rounded-lg bg-gray-50 relative">
                         {budgetItems.length > 1 && (
                             <button
                                 type="button"
@@ -2269,14 +2267,6 @@ const BudgetCalculatorComponent: React.FC<BudgetCalculatorProps> = ({ onAddBudge
                             value={item.category} 
                             onChange={(val) => handleBudgetItemChange(item.id, 'category', val)}
                             placeholder="e.g., Development"
-                            required
-                        />
-                        <InputField 
-                            label="Description"
-                            type="text" 
-                            value={item.description} 
-                            onChange={(val) => handleBudgetItemChange(item.id, 'description', val)}
-                            placeholder="Item description"
                             required
                         />
                         <InputField 
