@@ -157,7 +157,7 @@ const App = () => {
     // Function to handle adding new Minutes of Meeting
     const handleAddMom = (newMom: Omit<MeetingMinute, 'id'>) => {
         setMomData(prev => [...prev, { ...newMom, id: Date.now() }]);
-        setMessage('A New Meeting Note has been added successfully!');
+        setMessage('The meeting note has been successfully added!');
         
         // Track user engagement
         if (typeof window !== 'undefined' && window.gtag) {
@@ -172,7 +172,7 @@ const App = () => {
     // Function to handle adding new Timeline
     const handleAddProjectSchedule = (newSchedule: Omit<ProjectSchedule, 'id'>) => {
         setProjectScheduleData(prev => [...prev, { ...newSchedule, id: Date.now() }]);
-        setMessage('A New Project Schedule has been added successfully!');
+        setMessage('The project schedule has been successfully updated!');
         
         // Track user engagement
         if (typeof window !== 'undefined' && window.gtag) {
@@ -187,7 +187,7 @@ const App = () => {
     // Function to handle adding new Task
     const handleAddTask = (newTask: Omit<TaskCard, 'id'>) => {
         setTaskBoardData(prev => [...prev, { ...newTask, id: Date.now() }]);
-        setMessage('A New Task has been added successfully!');
+        setMessage('The task has been successfully added!');
         
         // Track user engagement
         if (typeof window !== 'undefined' && window.gtag) {
@@ -204,13 +204,13 @@ const App = () => {
         setTaskBoardData(prev => prev.map(task => 
             task.id === taskId ? { ...task, status: newStatus } : task
         ));
-        setMessage('A New Task status has been updated!');
+        setMessage('The task status has been successfully updated!');
     };
 
     // Function to handle adding new Budget
     const handleAddBudget = (newBudget: Omit<ProjectBudget, 'id'>) => {
         setBudgetData(prev => [...prev, { ...newBudget, id: Date.now() }]);
-        setMessage('A New Budget has been added successfully!');
+        setMessage('The budget has been successfully added!');
 
         // Track user engagement
         if (typeof window !== 'undefined' && window.gtag) {
@@ -225,7 +225,7 @@ const App = () => {
     // Function to handle adding new Risk Register
     const handleAddRiskRegister = (newRiskRegister: Omit<RiskRegister, 'id'>) => {
         setRiskRegisterData(prev => [...prev, { ...newRiskRegister, id: Date.now() }]);
-        setMessage('Risk register added successfully!');
+        setMessage('The risk register has been successfully added!');
         
         // Track user engagement
         if (typeof window !== 'undefined' && window.gtag) {
@@ -240,27 +240,27 @@ const App = () => {
     // Delete handler functions
     const handleDeleteMom = (id: number) => {
         setMomData(prev => prev.filter(mom => mom.id !== id));
-        setMessage('Meeting note deleted successfully!');
+        setMessage('The meeting note has been successfully deleted!');
     };
 
     const handleDeleteProjectSchedule = (id: number) => {
         setProjectScheduleData(prev => prev.filter(schedule => schedule.id !== id));
-        setMessage('Schedule deleted successfully!');
+        setMessage('The project schedule has been successfully deleted!');
     };
 
     const handleDeleteTask = (id: number) => {
         setTaskBoardData(prev => prev.filter(task => task.id !== id));
-        setMessage('Task deleted successfully!');
+        setMessage('The task has been successfully deleted!');
     };
 
     const handleDeleteBudget = (id: number) => {
         setBudgetData(prev => prev.filter(budget => budget.id !== id));
-        setMessage('Budget deleted successfully!');
+        setMessage('The budget has been successfully deleted!');
     };
 
     const handleDeleteRiskRegister = (id: number) => {
         setRiskRegisterData(prev => prev.filter(register => register.id !== id));
-        setMessage('Risk register deleted successfully!');
+        setMessage('The risk register has been successfully deleted!');
     };
 
     // Function to generate and download PDF with unified text-based format
@@ -1015,7 +1015,6 @@ const App = () => {
 
         // Add footer with generation info
         emailBody += `\n\n📧 Generated from TaskFlow Canvas on ${new Date().toLocaleDateString()}\n`;
-        emailBody += `🔗 This email contains project timeline information for review and collaboration.`;
 
         // Encode the subject and body for the mailto link
         const mailtoLink = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
