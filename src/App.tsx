@@ -1077,8 +1077,8 @@ const App = () => {
                     50% { background-position: 100% 50%; }
                 }
                 .header-container {
-                    background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 50%, #a5b4fc 100%);
-                    border: 3px solid transparent;
+                    background: linear-gradient(135deg,rgb(243, 107, 191) 0%,rgb(245, 191, 110) 50%,rgb(235, 145, 247) 50%);
+                    border: 2px solid transparent;
                     background-clip: padding-box;
                     border-radius: 20px;
                     position: relative;
