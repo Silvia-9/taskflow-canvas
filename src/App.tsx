@@ -1078,7 +1078,7 @@ const App = () => {
                     </h1>
                 </div>
                 <p className="text-lg text-gray-600">
-                    Your Project Assistant Toolkit
+                    Optimize Your Workflow Visually and Strategically
                 </p>
             </header>
 
