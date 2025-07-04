@@ -1077,12 +1077,24 @@ const App = () => {
                     50% { background-position: 100% 50%; }
                 }
                 .header-container {
-                    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(240, 248, 255, 0.95) 50%, rgba(245, 245, 255, 0.9) 100%);
+                    background: linear-gradient(135deg, 
+                        rgba(15, 23, 42, 0.95) 0%,
+                        rgba(30, 27, 75, 0.9) 20%,
+                        rgba(91, 33, 182, 0.8) 40%,
+                        rgba(79, 70, 229, 0.85) 60%,
+                        rgba(59, 130, 246, 0.8) 80%,
+                        rgba(15, 23, 42, 0.95) 100%);
                     border: 2px solid transparent;
                     background-clip: padding-box;
-                    border-radius: 20px;
+                    border-radius: 24px;
                     position: relative;
-                    backdrop-filter: blur(10px);
+                    backdrop-filter: blur(25px) saturate(180%);
+                    box-shadow: 
+                        0 25px 50px rgba(0, 0, 0, 0.25),
+                        0 10px 25px rgba(79, 70, 229, 0.2),
+                        inset 0 2px 0 rgba(255, 255, 255, 0.15),
+                        inset 0 -2px 0 rgba(0, 0, 0, 0.1);
+                    overflow: hidden;
                 }
                 .header-container::before {
                     content: '';
@@ -1092,9 +1104,47 @@ const App = () => {
                     right: 0;
                     bottom: 0;
                     z-index: -1;
-                    margin: -3px;
-                    border-radius: 20px;
-                    background: linear-gradient(135deg, #6366f1, #4f46e5, #4338ca, #3730a3);
+                    margin: -2px;
+                    border-radius: 24px;
+                    background: linear-gradient(135deg, 
+                        #06b6d4, #3b82f6, #6366f1, #8b5cf6, 
+                        #a855f7, #d946ef, #ec4899, #f97316);
+                    background-size: 400% 400%;
+                    animation: gradientShift 8s ease-in-out infinite;
+                }
+                .header-container::after {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    z-index: -1;
+                    background: radial-gradient(circle at 30% 20%, rgba(99, 102, 241, 0.3) 0%, transparent 50%),
+                                radial-gradient(circle at 70% 80%, rgba(168, 85, 247, 0.3) 0%, transparent 50%),
+                                radial-gradient(circle at 20% 70%, rgba(59, 130, 246, 0.3) 0%, transparent 50%);
+                    border-radius: 24px;
+                    animation: floatingOrbs 6s ease-in-out infinite;
+                }
+                @keyframes gradientShift {
+                    0%, 100% { background-position: 0% 50%; }
+                    25% { background-position: 100% 50%; }
+                    50% { background-position: 100% 100%; }
+                    75% { background-position: 0% 100%; }
+                }
+                @keyframes floatingOrbs {
+                    0%, 100% { 
+                        transform: translateY(0) scale(1);
+                        opacity: 0.7;
+                    }
+                    33% { 
+                        transform: translateY(-10px) scale(1.05);
+                        opacity: 0.9;
+                    }
+                    66% { 
+                        transform: translateY(5px) scale(0.95);
+                        opacity: 0.8;
+                    }
                 }
                 `}
             </style>
@@ -1114,7 +1164,7 @@ const App = () => {
                             TaskFlow Canvas
                         </h1>
                     </div>
-                    <p className="text-xl font-semibold text-gray-700 bg-white/30 backdrop-blur-sm rounded-full px-6 py-2 inline-block">
+                    <p className="text-xl font-semibold text-white bg-white/20 backdrop-blur-md rounded-full px-8 py-3 inline-block border border-white/30 shadow-lg">
                         Optimize Your Workflow Visually and Strategically
                     </p>
                 </div>
