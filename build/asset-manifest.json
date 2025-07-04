@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/taskflow-canvas/static/js/main.e75e5b2b.js",
+    "main.js": "/taskflow-canvas/static/js/main.a2126a7f.js",
     "index.html": "/taskflow-canvas/index.html",
-    "main.e75e5b2b.js.map": "/taskflow-canvas/static/js/main.e75e5b2b.js.map"
+    "main.a2126a7f.js.map": "/taskflow-canvas/static/js/main.a2126a7f.js.map"
   },
   "entrypoints": [
-    "static/js/main.e75e5b2b.js"
+    "static/js/main.a2126a7f.js"
   ]
 }
