@@ -1034,22 +1034,22 @@ const App = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-indigo-100 via-purple-50 to-pink-100 font-inter text-gray-800 p-4 sm:p-6 lg:p-8 rounded-lg shadow-xl">
+        <div className="min-h-screen bg-gradient-to-br from-indigo-100 via-indigo-50 to-purple-100 font-inter text-gray-800 p-4 sm:p-6 lg:p-8 rounded-lg shadow-xl">
             <style>
                 {`
                 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
                 body {
                     font-family: 'Inter', sans-serif;
-                    background: linear-gradient(135deg, #e0e7ff 0%, #f3e8ff 50%, #fce7f3 100%);
+                    background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 50%, #a5b4fc 100%);
                 }
                 .scrollable-content {
                     max-height: 500px; /* Adjust as needed */
                     overflow-y: auto;
-                    border: 1px solid #e2e8f0; /* Light gray border */
+                    border: 1px solid #c7d2fe; /* Light purple border */
                     border-radius: 0.5rem; /* Rounded corners */
                     padding: 1rem;
                     background-color: #fff;
-                    box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06); /* subtle inner shadow */
+                    box-shadow: inset 0 2px 4px 0 rgba(99, 102, 241, 0.06); /* subtle purple inner shadow */
                 }
                 /* Hide scrollbar for Chrome, Safari and Opera */
                 .scrollable-content::-webkit-scrollbar {
@@ -1061,13 +1061,13 @@ const App = () => {
                     scrollbar-width: none;  /* Firefox */
                 }
                 .header-gradient {
-                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
                     -webkit-background-clip: text;
                     -webkit-text-fill-color: transparent;
                     background-clip: text;
                 }
                 .header-container {
-                    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+                    background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 50%, #a5b4fc 100%);
                     border: 3px solid transparent;
                     background-clip: padding-box;
                     border-radius: 20px;
@@ -1083,7 +1083,7 @@ const App = () => {
                     z-index: -1;
                     margin: -3px;
                     border-radius: 20px;
-                    background: linear-gradient(135deg, #667eea, #764ba2, #ff6b6b, #feca57);
+                    background: linear-gradient(135deg, #6366f1, #4f46e5, #4338ca, #3730a3);
                 }
                 `}
             </style>
@@ -1111,7 +1111,7 @@ const App = () => {
 
             {/* Message Display */}
             {message && (
-                <div className="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 rounded-md mb-6 shadow-md transition-all duration-300 ease-in-out transform scale-100 opacity-100">
+                <div className="bg-indigo-100 border-l-4 border-indigo-500 text-indigo-700 p-4 rounded-md mb-6 shadow-md transition-all duration-300 ease-in-out transform scale-100 opacity-100">
                     <p className="font-semibold">{message}</p>
                 </div>
             )}
@@ -1121,7 +1121,7 @@ const App = () => {
                 <button
                     onClick={() => handleTabChange('mom', 'Meeting Notes')}
                     className={`px-4 py-2 rounded-xl font-semibold text-sm md:text-lg transition-all duration-300 ease-in-out shadow-md
-                        ${activeTab === 'mom' ? 'bg-gradient-to-r from-pink-500 to-rose-500 text-white transform scale-105 shadow-lg' : 'bg-white text-pink-600 hover:bg-pink-50 hover:text-pink-700 border-2 border-pink-200'}`
+                        ${activeTab === 'mom' ? 'bg-gradient-to-r from-indigo-500 to-purple-500 text-white transform scale-105 shadow-lg' : 'bg-white text-indigo-600 hover:bg-indigo-50 hover:text-indigo-700 border-2 border-indigo-200'}`
                     }
                 >
                     Meeting Notes
@@ -1129,7 +1129,7 @@ const App = () => {
                 <button
                     onClick={() => handleTabChange('project', 'Gantt Chart')}
                     className={`px-4 py-2 rounded-xl font-semibold text-sm md:text-lg transition-all duration-300 ease-in-out shadow-md
-                        ${activeTab === 'project' ? 'bg-gradient-to-r from-purple-500 to-indigo-500 text-white transform scale-105 shadow-lg' : 'bg-white text-purple-600 hover:bg-purple-50 hover:text-purple-700 border-2 border-purple-200'}`
+                        ${activeTab === 'project' ? 'bg-gradient-to-r from-indigo-500 to-purple-500 text-white transform scale-105 shadow-lg' : 'bg-white text-indigo-600 hover:bg-indigo-50 hover:text-indigo-700 border-2 border-indigo-200'}`
                     }
                 >
                     Gantt Chart
@@ -1137,7 +1137,7 @@ const App = () => {
                 <button
                     onClick={() => handleTabChange('taskboard', 'Kanban Board')}
                     className={`px-4 py-2 rounded-xl font-semibold text-sm md:text-lg transition-all duration-300 ease-in-out shadow-md
-                        ${activeTab === 'taskboard' ? 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white transform scale-105 shadow-lg' : 'bg-white text-blue-600 hover:bg-blue-50 hover:text-blue-700 border-2 border-blue-200'}`
+                        ${activeTab === 'taskboard' ? 'bg-gradient-to-r from-indigo-500 to-purple-500 text-white transform scale-105 shadow-lg' : 'bg-white text-indigo-600 hover:bg-indigo-50 hover:text-indigo-700 border-2 border-indigo-200'}`
                     }
                 >
                     Kanban Board
@@ -1145,7 +1145,7 @@ const App = () => {
                 <button
                     onClick={() => handleTabChange('budget', 'Budget Calculator')}
                     className={`px-4 py-2 rounded-xl font-semibold text-sm md:text-lg transition-all duration-300 ease-in-out shadow-md
-                        ${activeTab === 'budget' ? 'bg-gradient-to-r from-green-500 to-emerald-500 text-white transform scale-105 shadow-lg' : 'bg-white text-green-600 hover:bg-green-50 hover:text-green-700 border-2 border-green-200'}`
+                        ${activeTab === 'budget' ? 'bg-gradient-to-r from-indigo-500 to-purple-500 text-white transform scale-105 shadow-lg' : 'bg-white text-indigo-600 hover:bg-indigo-50 hover:text-indigo-700 border-2 border-indigo-200'}`
                     }
                 >
                     Budget Calculator
@@ -1153,7 +1153,7 @@ const App = () => {
                 <button
                     onClick={() => handleTabChange('risks', 'Risk Log')}
                     className={`px-4 py-2 rounded-xl font-semibold text-sm md:text-lg transition-all duration-300 ease-in-out shadow-md
-                        ${activeTab === 'risks' ? 'bg-gradient-to-r from-orange-500 to-red-500 text-white transform scale-105 shadow-lg' : 'bg-white text-orange-600 hover:bg-orange-50 hover:text-orange-700 border-2 border-orange-200'}`
+                        ${activeTab === 'risks' ? 'bg-gradient-to-r from-indigo-500 to-purple-500 text-white transform scale-105 shadow-lg' : 'bg-white text-indigo-600 hover:bg-indigo-50 hover:text-indigo-700 border-2 border-indigo-200'}`
                     }
                 >
                     Risk Log
@@ -1441,7 +1441,7 @@ const MinutesOfMeeting: React.FC<MinutesOfMeetingProps> = ({ onAddMom, onDeleteM
                 <div className="md:col-span-2 flex justify-center">
                     <button
                         type="submit"
-                        className="bg-blue-600 text-white px-8 py-3 rounded-full font-semibold text-lg shadow-lg hover:bg-blue-700 transition duration-300 ease-in-out transform hover:scale-105"
+                        className="bg-indigo-600 text-white px-8 py-3 rounded-full font-semibold text-lg shadow-lg hover:bg-indigo-700 transition duration-300 ease-in-out transform hover:scale-105"
                     >
                         Add New Meeting Note
                     </button>
@@ -1820,13 +1820,13 @@ const ProjectScheduleComponent: React.FC<ProjectScheduleProps> = ({ onAddProject
                     <button
                         type="button"
                         onClick={addTask}
-                        className="bg-green-500 text-white px-8 py-3 rounded-full font-semibold text-lg shadow-lg hover:bg-green-600 transition duration-300 ease-in-out transform hover:scale-105"
+                        className="bg-indigo-500 text-white px-8 py-3 rounded-full font-semibold text-lg shadow-lg hover:bg-indigo-600 transition duration-300 ease-in-out transform hover:scale-105"
                     >
                         Add
                     </button>
                     <button
                         type="submit"
-                        className="bg-blue-600 text-white px-8 py-3 rounded-full font-semibold text-lg shadow-lg hover:bg-blue-700 transition duration-300 ease-in-out transform hover:scale-105"
+                        className="bg-indigo-600 text-white px-8 py-3 rounded-full font-semibold text-lg shadow-lg hover:bg-indigo-700 transition duration-300 ease-in-out transform hover:scale-105"
                     >
                         Save
                     </button>
@@ -2409,9 +2409,9 @@ const BudgetCalculatorComponent: React.FC<BudgetCalculatorProps> = ({ onAddBudge
                                     <p className="text-sm text-purple-600 font-medium">Earned Value (EV)</p>
                                     <p className="text-2xl font-bold text-purple-800">${getTotalEarnedValue(budget).toFixed(2)}</p>
                                 </div>
-                                <div className="bg-green-100 p-4 rounded-lg text-center">
-                                    <p className="text-sm text-green-600 font-medium">Actual Cost (AC)</p>
-                                    <p className="text-2xl font-bold text-green-800">${getTotalActual(budget).toFixed(2)}</p>
+                                <div className="bg-indigo-100 p-4 rounded-lg text-center">
+                                    <p className="text-sm text-indigo-600 font-medium">Actual Cost (AC)</p>
+                                    <p className="text-2xl font-bold text-indigo-800">${getTotalActual(budget).toFixed(2)}</p>
                                 </div>
                                 
                                 {/* EVM Variances */}
