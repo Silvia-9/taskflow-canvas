@@ -1040,16 +1040,14 @@ const App = () => {
                 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
                 body {
                     font-family: 'Inter', sans-serif;
-                    background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 50%, #a5b4fc 100%);
+                    background: linear-gradient(135deg,rgb(231, 153, 241) 0%,rgb(247, 227, 115) 50%,rgb(142, 103, 247) 100%);
                 }
                 .scrollable-content {
                     max-height: 500px; /* Adjust as needed */
                     overflow-y: auto;
-                    border: 1px solid #c7d2fe; /* Light purple border */
-                    border-radius: 0.5rem; /* Rounded corners */
                     padding: 1rem;
                     background-color: #fff;
-                    box-shadow: inset 0 2px 4px 0 rgba(99, 102, 241, 0.06); /* subtle purple inner shadow */
+                    box-shadow: inset 0 2px 4px 0 rgba(63, 137, 235, 0.06); /* subtle purple inner shadow */
                 }
                 /* Hide scrollbar for Chrome, Safari and Opera */
                 .scrollable-content::-webkit-scrollbar {
@@ -1061,10 +1059,22 @@ const App = () => {
                     scrollbar-width: none;  /* Firefox */
                 }
                 .header-gradient {
-                    background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+                    background: linear-gradient(135deg, #00ff88 0%, #00d4ff 25%, #b347d9 50%, #ff6b9d 75%, #00ff88 100%);
                     -webkit-background-clip: text;
                     -webkit-text-fill-color: transparent;
                     background-clip: text;
+                }
+                .northern-lights-text {
+                    background: linear-gradient(135deg, #00ff88 0%, #00d4ff 25%, #b347d9 50%, #ff6b9d 75%, #00ff88 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    background-size: 200% 200%;
+                    animation: aurora 3s ease-in-out infinite;
+                }
+                @keyframes aurora {
+                    0%, 100% { background-position: 0% 50%; }
+                    50% { background-position: 100% 50%; }
                 }
                 .header-container {
                     background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 50%, #a5b4fc 100%);
@@ -1099,11 +1109,11 @@ const App = () => {
                                 (e.target as HTMLImageElement).style.display = 'none';
                             }}
                         />
-                        <h1 className="text-4xl sm:text-6xl font-extrabold header-gradient drop-shadow-2xl">
+                        <h1 className="text-4xl sm:text-6xl font-extrabold northern-lights-text drop-shadow-2xl">
                             TaskFlow Canvas
                         </h1>
                     </div>
-                    <p className="text-xl font-semibold text-gray-700 bg-white/30 backdrop-blur-sm rounded-full px-6 py-2 inline-block border border-white/20">
+                    <p className="text-xl font-semibold text-gray-700 bg-white/30 backdrop-blur-sm rounded-full px-6 py-2 inline-block">
                         Optimize Your Workflow Visually and Strategically
                     </p>
                 </div>
@@ -1121,7 +1131,7 @@ const App = () => {
                 <button
                     onClick={() => handleTabChange('mom', 'Meeting Notes')}
                     className={`px-4 py-2 rounded-xl font-semibold text-sm md:text-lg transition-all duration-300 ease-in-out shadow-md
-                        ${activeTab === 'mom' ? 'bg-gradient-to-r from-indigo-500 to-purple-500 text-white transform scale-105 shadow-lg' : 'bg-white text-indigo-600 hover:bg-indigo-50 hover:text-indigo-700 border-2 border-indigo-200'}`
+                        ${activeTab === 'mom' ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white transform scale-105 shadow-lg' : 'bg-white text-blue-600 hover:bg-blue-50 hover:text-blue-700 border-2 border-blue-200'}`
                     }
                 >
                     Meeting Notes
@@ -1129,7 +1139,7 @@ const App = () => {
                 <button
                     onClick={() => handleTabChange('project', 'Gantt Chart')}
                     className={`px-4 py-2 rounded-xl font-semibold text-sm md:text-lg transition-all duration-300 ease-in-out shadow-md
-                        ${activeTab === 'project' ? 'bg-gradient-to-r from-indigo-500 to-purple-500 text-white transform scale-105 shadow-lg' : 'bg-white text-indigo-600 hover:bg-indigo-50 hover:text-indigo-700 border-2 border-indigo-200'}`
+                        ${activeTab === 'project' ? 'bg-gradient-to-r from-green-500 to-green-600 text-white transform scale-105 shadow-lg' : 'bg-white text-green-600 hover:bg-green-50 hover:text-green-700 border-2 border-green-200'}`
                     }
                 >
                     Gantt Chart
@@ -1137,7 +1147,7 @@ const App = () => {
                 <button
                     onClick={() => handleTabChange('taskboard', 'Kanban Board')}
                     className={`px-4 py-2 rounded-xl font-semibold text-sm md:text-lg transition-all duration-300 ease-in-out shadow-md
-                        ${activeTab === 'taskboard' ? 'bg-gradient-to-r from-indigo-500 to-purple-500 text-white transform scale-105 shadow-lg' : 'bg-white text-indigo-600 hover:bg-indigo-50 hover:text-indigo-700 border-2 border-indigo-200'}`
+                        ${activeTab === 'taskboard' ? 'bg-gradient-to-r from-purple-500 to-purple-600 text-white transform scale-105 shadow-lg' : 'bg-white text-purple-600 hover:bg-purple-50 hover:text-purple-700 border-2 border-purple-200'}`
                     }
                 >
                     Kanban Board
@@ -1145,7 +1155,7 @@ const App = () => {
                 <button
                     onClick={() => handleTabChange('budget', 'Budget Calculator')}
                     className={`px-4 py-2 rounded-xl font-semibold text-sm md:text-lg transition-all duration-300 ease-in-out shadow-md
-                        ${activeTab === 'budget' ? 'bg-gradient-to-r from-indigo-500 to-purple-500 text-white transform scale-105 shadow-lg' : 'bg-white text-indigo-600 hover:bg-indigo-50 hover:text-indigo-700 border-2 border-indigo-200'}`
+                        ${activeTab === 'budget' ? 'bg-gradient-to-r from-orange-500 to-orange-600 text-white transform scale-105 shadow-lg' : 'bg-white text-orange-600 hover:bg-orange-50 hover:text-orange-700 border-2 border-orange-200'}`
                     }
                 >
                     Budget Calculator
@@ -1153,7 +1163,7 @@ const App = () => {
                 <button
                     onClick={() => handleTabChange('risks', 'Risk Log')}
                     className={`px-4 py-2 rounded-xl font-semibold text-sm md:text-lg transition-all duration-300 ease-in-out shadow-md
-                        ${activeTab === 'risks' ? 'bg-gradient-to-r from-indigo-500 to-purple-500 text-white transform scale-105 shadow-lg' : 'bg-white text-indigo-600 hover:bg-indigo-50 hover:text-indigo-700 border-2 border-indigo-200'}`
+                        ${activeTab === 'risks' ? 'bg-gradient-to-r from-red-500 to-red-600 text-white transform scale-105 shadow-lg' : 'bg-white text-red-600 hover:bg-red-50 hover:text-red-700 border-2 border-red-200'}`
                     }
                 >
                     Risk Log
@@ -1441,7 +1451,7 @@ const MinutesOfMeeting: React.FC<MinutesOfMeetingProps> = ({ onAddMom, onDeleteM
                 <div className="md:col-span-2 flex justify-center">
                     <button
                         type="submit"
-                        className="bg-indigo-600 text-white px-8 py-3 rounded-full font-semibold text-lg shadow-lg hover:bg-indigo-700 transition duration-300 ease-in-out transform hover:scale-105"
+                        className="bg-blue-600 text-white px-8 py-3 rounded-full font-semibold text-lg shadow-lg hover:bg-blue-700 transition duration-300 ease-in-out transform hover:scale-105"
                     >
                         Add New Meeting Note
                     </button>
@@ -1820,13 +1830,13 @@ const ProjectScheduleComponent: React.FC<ProjectScheduleProps> = ({ onAddProject
                     <button
                         type="button"
                         onClick={addTask}
-                        className="bg-indigo-500 text-white px-8 py-3 rounded-full font-semibold text-lg shadow-lg hover:bg-indigo-600 transition duration-300 ease-in-out transform hover:scale-105"
+                        className="bg-green-500 text-white px-8 py-3 rounded-full font-semibold text-lg shadow-lg hover:bg-green-600 transition duration-300 ease-in-out transform hover:scale-105"
                     >
                         Add
                     </button>
                     <button
                         type="submit"
-                        className="bg-indigo-600 text-white px-8 py-3 rounded-full font-semibold text-lg shadow-lg hover:bg-indigo-700 transition duration-300 ease-in-out transform hover:scale-105"
+                        className="bg-blue-600 text-white px-8 py-3 rounded-full font-semibold text-lg shadow-lg hover:bg-blue-700 transition duration-300 ease-in-out transform hover:scale-105"
                     >
                         Save
                     </button>
@@ -2409,9 +2419,9 @@ const BudgetCalculatorComponent: React.FC<BudgetCalculatorProps> = ({ onAddBudge
                                     <p className="text-sm text-purple-600 font-medium">Earned Value (EV)</p>
                                     <p className="text-2xl font-bold text-purple-800">${getTotalEarnedValue(budget).toFixed(2)}</p>
                                 </div>
-                                <div className="bg-indigo-100 p-4 rounded-lg text-center">
-                                    <p className="text-sm text-indigo-600 font-medium">Actual Cost (AC)</p>
-                                    <p className="text-2xl font-bold text-indigo-800">${getTotalActual(budget).toFixed(2)}</p>
+                                <div className="bg-green-100 p-4 rounded-lg text-center">
+                                    <p className="text-sm text-green-600 font-medium">Actual Cost (AC)</p>
+                                    <p className="text-2xl font-bold text-green-800">${getTotalActual(budget).toFixed(2)}</p>
                                 </div>
                                 
                                 {/* EVM Variances */}
