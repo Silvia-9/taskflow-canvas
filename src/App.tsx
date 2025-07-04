@@ -1014,7 +1014,7 @@ const App = () => {
         }
 
         // Add footer with generation info
-        emailBody += `\n\n📧 Generated from TaskFlow Canvas (https://silvia-9.github.io/taskflow-canvas/) on ${new Date().toLocaleDateString()}\n`;
+        emailBody += `\n\n📧 Generated from TaskFlow Canvas\n🌐 Visit us at: https://silvia-9.github.io/taskflow-canvas/\n📅 Generated on ${new Date().toLocaleDateString()}\n`;
 
         // Encode the subject and body for the mailto link
         const mailtoLink = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
@@ -1223,6 +1223,22 @@ const App = () => {
                     sendEmail={() => sendEmail(riskRegisterData, 'Risk Register', 'RiskRegister')}
                 />
             )}
+            
+            {/* Footer with clickable link */}
+            <footer className="mt-12 pt-8 border-t border-gray-200 text-center">
+                <p className="text-sm text-gray-600">
+                    📧 Generated from{' '}
+                    <a 
+                        href="https://silvia-9.github.io/taskflow-canvas/" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-blue-600 hover:text-blue-800 hover:underline font-semibold transition-all duration-200"
+                    >
+                        TaskFlow Canvas
+                    </a>
+                    {' '}on {new Date().toLocaleDateString()}
+                </p>
+            </footer>
         </div>
     );
 };
