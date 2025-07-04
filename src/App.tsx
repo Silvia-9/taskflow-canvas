@@ -1067,7 +1067,7 @@ const App = () => {
                     <img 
                         src="/taskflow-canvas/TaskFlow Canvas.png" 
                         alt="TaskFlow Canvas Logo" 
-                        className="w-12 h-12 mr-3"
+                        className="w-16 h-16 mr-4"
                         onError={(e) => {
                             // Hide the image if it fails to load
                             (e.target as HTMLImageElement).style.display = 'none';
