@@ -1063,9 +1063,20 @@ const App = () => {
                 `}
             </style>
             <header className="text-center mb-8">
-                <h1 className="text-4xl sm:text-5xl font-extrabold text-blue-800 mb-2 drop-shadow-lg">
-                    TaskFlow Canvas
-                </h1>
+                <div className="flex items-center justify-center mb-2">
+                    <img 
+                        src="/taskflow-canvas/TaskFlow Canvas.png" 
+                        alt="TaskFlow Canvas Logo" 
+                        className="w-12 h-12 mr-3"
+                        onError={(e) => {
+                            // Hide the image if it fails to load
+                            (e.target as HTMLImageElement).style.display = 'none';
+                        }}
+                    />
+                    <h1 className="text-4xl sm:text-5xl font-extrabold text-blue-800 drop-shadow-lg">
+                        TaskFlow Canvas
+                    </h1>
+                </div>
                 <p className="text-lg text-gray-600">
                     Your Project Assistant Toolkit
                 </p>
@@ -1300,7 +1311,7 @@ const MinutesOfMeeting: React.FC<MinutesOfMeetingProps> = ({ onAddMom, onDeleteM
                                 <label className="block text-sm font-medium text-gray-700 mb-1">Task Description</label>
                                 <input
                                     type="text"
-                                    placeholder="Task description"
+                                    placeholder="e.g., Prepare project report"
                                     value={newActionTask}
                                     onChange={(e) => setNewActionTask(e.target.value)}
                                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -1310,7 +1321,7 @@ const MinutesOfMeeting: React.FC<MinutesOfMeetingProps> = ({ onAddMom, onDeleteM
                                 <label className="block text-sm font-medium text-gray-700 mb-1">Assigned To</label>
                                 <input
                                     type="text"
-                                    placeholder="Owner"
+                                    placeholder="e.g., Mary Smith"
                                     value={newActionOwner}
                                     onChange={(e) => setNewActionOwner(e.target.value)}
                                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
